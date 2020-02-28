@@ -1,0 +1,75 @@
+version: "3"
+ 
+services:
+  bimaster:
+    image: bidw/hadoop:base_v1.0
+    container_name: bimaster
+    hostname: hadoop-bimaster
+    restart: always
+    networks:
+       - hadoop
+    command: 
+       - bash
+       - -c
+       - |
+         service ssh start
+         cd /root
+         sh start-hadoop.sh
+       #tail -f /dev/null
+    expose:
+       - "9000"
+       - "22"     
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
+       - "/hadoop/hdfs/tmp:/home/hadoop/hdfs/tmp"
+       - "/hadoop/hdfs/name:/home/hadoop/hdfs/name"
+       - "/hadoop/hdfs/data:/home/hadoop/hdfs/data"
+       
+  bislaver01:
+    image: bidw/hadoop:base_v1.0
+    container_name: bislaver01
+    hostname: hadoop-bislaver01
+    restart: always
+    depends_on:
+       - bimaster
+    networks:
+       - hadoop
+    command: 
+       - bash
+       - -c 
+       - |
+         service ssh start
+         #tail -f /dev/null
+    expose:
+       - "22"
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
+       - "/hadoop/hdfs/tmp:/home/hadoop/hdfs/tmp"
+       - "/hadoop/hdfs/name:/home/hadoop/hdfs/name"
+       - "/hadoop/hdfs/data:/home/hadoop/hdfs/data"
+     
+  bislaver02:
+    image: bidw/hadoop:base_v1.0
+    container_name: bislaver02
+    hostname: hadoop-bislaver02
+    restart: always
+    depends_on:
+       - bimaster
+    networks:
+       - hadoop
+    command:
+       - bash
+       - -c 
+       - |
+         service ssh start
+         #tail -f /dev/null
+    expose:
+       - "22"
+    volumes:
+       - "/etc/localtime:/etc/localtime:ro"
+       - "/hadoop/hdfs/tmp:/home/hadoop/hdfs/tmp"
+       - "/hadoop/hdfs/name:/home/hadoop/hdfs/name"
+       - "/hadoop/hdfs/data:/home/hadoop/hdfs/data"
+networks:
+  hadoop:
+    driver: bridge

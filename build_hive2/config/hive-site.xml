@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+        <property>
+                <name>hive.exec.scratchdir</name>
+                <value>/home/hadoop/hive/tmp</value>
+        </property>
+        <property>
+                <name>hive.metastore.warehouse.dir</name>
+                <value>/home/hadoop/hive/data</value>
+        </property>
+        <property>
+                <name>hive.querylog.location</name>
+                <value>/opt/hive/log</value>
+        </property>
+
+	<property>
+		<name>javax.jdo.option.ConnectionURL</name>
+	        <value>jdbc:mysql://hive2-mysql:3306/hive?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false</value>
+	</property>
+	<property>
+		<name>javax.jdo.option.ConnectionDriverName</name>
+		<value>com.mysql.jdbc.Driver</value>
+	</property>
+	<property>
+		<name>javax.jdo.option.ConnectionUserName</name>
+		<value>root</value>
+	</property>
+	<property>
+		<name>javax.jdo.option.ConnectionPassword</name>
+		<value>yzw@123</value>
+	</property>
+	<property>
+		<name>datanucleus.readOnlyDatastore</name>
+		<value>false</value>
+	</property>
+	<property>
+		<name>datanucleus.fixedDatastore</name>
+		<value>false</value>
+	</property>
+	<property>
+		<name>datanucleus.autoCreateSchema</name>
+		<value>true</value>
+	</property>
+	<property>
+		<name>datanucleus.schema.autoCreateAll</name>
+		<value>true</value>
+	</property>
+	<property>
+		<name>datanucleus.autoCreateTables</name>
+		<value>true</value>
+	</property>
+	<property>
+		<name>datanucleus.autoCreateColumns</name>
+		<value>true</value>
+	</property>
+	<property>
+		<name>hive.metastore.local</name>
+		<value>true</value>
+	</property>
+	<!-- 显示表的列名 -->
+	<property>
+		<name>hive.cli.print.header</name>
+		<value>true</value>
+	</property>
+	<!-- 显示数据库名称 -->
+	<property>
+		<name>hive.cli.print.current.db</name>
+		<value>true</value>
+	</property>
+</configuration>
+
